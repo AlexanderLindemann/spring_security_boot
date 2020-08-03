@@ -1,7 +1,6 @@
 package com.alexander.spring_security_boot.controller;
 
 import com.alexander.spring_security_boot.Service.UserService;
-import com.alexander.spring_security_boot.model.Role;
 import com.alexander.spring_security_boot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,15 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
     @Autowired
     private UserService userService;
 
@@ -43,10 +38,6 @@ public class AdminController {
     public String savePerson(Model model, User user) {
         String username = user.getUsername();
         String password = user.getPassword();
-//        Set<Role> setRole = new HashSet<>();
-//        Role role = userService.findByRoleName("ROLE_USER");
-//        setRole.add(role);
-
         User newUser = new User(username, password);
         userService.saveUser(newUser);
         return "redirect:/admin/users";
